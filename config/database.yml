@@ -1,0 +1,12 @@
+defaults: &defaults
+  adapter: postgresql
+  template: template0
+
+development:
+  <<: *defaults
+  database: movietracker_development
+
+test:
+  <<: *defaults
+  min_messages: warning #magic sauce
+  database: movietracker_test
