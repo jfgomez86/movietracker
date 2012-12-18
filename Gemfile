@@ -12,6 +12,9 @@ group :assets do
 end
 
 gem 'jquery-rails', '2.1.4'
+gem 'devise', '2.1.2'
+gem 'haml-rails', '0.3.5'
+gem 'simple_form', '2.0.4'
 
 # NOTE: The following gems contain generators useful in development
 # environment too!
