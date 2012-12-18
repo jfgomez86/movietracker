@@ -1,3 +1,6 @@
 class User < ActiveRecord::Base
-  # attr_accessible :title, :body
+  devise :database_authenticatable, :registerable,
+         :recoverable, :rememberable, :trackable, :validatable
+
+  attr_accessible :full_name, :email, :password, :password_confirmation, :remember_me
 end
