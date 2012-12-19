@@ -5,7 +5,7 @@ What is Movie Tracker?
 Movie Tracker is a web application that allows a user to have a record of whether or not he/she has already seen a movie.
 A user will be able to choose from a list of movies which ones he/she has already watch.
 
-Dependencies App
+App Dependencies
 ----------------
 
 ```
