@@ -1,4 +1,16 @@
-- unless @checkin.present?
-  = link_to "Watch this movie", movie_checkins_path(@movie), method: :post
-- else
-  You have already watched this movie!
+.page-header
+  %h1
+    = @movie.title
+    %small= "(#{@movie.release_date.year})"
+
+.row
+  .span4 Movie's poster
+  .span8
+    - unless @checkin.present?
+      = link_to "Watch this movie", movie_checkins_path(@movie), method: :post
+    - else
+      -# Add link to Unwatch movie here
+      You have already watched this movie!
+    %hr
+    %p
+      = @movie.synopsis
