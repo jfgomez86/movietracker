@@ -10,4 +10,6 @@ Movietracker::Application.routes.draw do
   end
 
   root to: "movies#index"
+
+  resources :user_movies, only: [:index]
 end

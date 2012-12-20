@@ -2,3 +2,5 @@
 %ul
   - @movies.each do |movie|
     %li[movie]= link_to movie.title, movie_path(movie)
+%hr
+= link_to "Watchlist", user_movies_path
