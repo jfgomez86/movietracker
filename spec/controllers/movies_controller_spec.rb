@@ -42,6 +42,19 @@ describe MoviesController, "Actions" do
           get :show, id: @movie.to_param
           should render_template("movies/show")
         end
+
+        describe "as an authenticated user" do
+          before do
+            @user = FactoryGirl.create(:user)
+            sign_in :user, @user
+          end
+
+          it "should load a checkin for the movie if it exists" do
+            FactoryGirl.create(:checkin, movie: @movie, user: @user)
+            get :show, id: @movie.to_param
+            assigns(:checkin).should_not be_nil
+          end
+        end
       end
 
   end

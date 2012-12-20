@@ -1,0 +1,4 @@
+- unless @checkin.present?
+  = link_to "Watch this movie", movie_checkins_path(@movie), method: :post
+- else
+  You have already watched this movie!
