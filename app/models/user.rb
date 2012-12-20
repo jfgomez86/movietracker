@@ -3,4 +3,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   attr_accessible :full_name, :email, :password, :password_confirmation, :remember_me
+
+  has_many :checkins
+  has_many :movies, through: :checkins
 end
