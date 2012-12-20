@@ -35,7 +35,12 @@ describe CheckinsController, "Actions" do
     end
 
     describe "on DELETE to #destroy" do
-      it "should delete an existing checkin for a given user"
+      it "should delete an existing checkin for a given movie" do
+        @checkin = FactoryGirl.create(:checkin, :user => @user, :movie=> @movie)
+        expect {
+          delete :destroy, movie_id: @movie.to_param, id: @checkin.to_param
+        }.to change(@movie.reload.checkins, :count).by(-1)
+      end
     end
 
   end
@@ -46,5 +51,7 @@ describe CheckinsController, "Actions" do
       post :create, movie_id: @movie.to_param
       should redirect_to(new_user_session_path)
     end
+
   end
+  
 end
