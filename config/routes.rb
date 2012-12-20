@@ -10,4 +10,6 @@ Movietracker::Application.routes.draw do
   end
 
   root to: "movies#index"
+
+  get 'watchlist', to: 'user_movies#index', as: :watchlist
 end
