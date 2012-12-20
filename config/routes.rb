@@ -11,5 +11,5 @@ Movietracker::Application.routes.draw do
 
   root to: "movies#index"
 
-  resources :user_movies, only: [:index]
+  get 'watchlist', to: 'user_movies#index', as: :watchlist
 end
