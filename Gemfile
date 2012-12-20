@@ -25,3 +25,5 @@ end
 group :test do
   gem "shoulda-matchers", '1.2.0'
 end
+
+gem 'activeadmin', '0.5.1'
