@@ -1,8 +1,7 @@
 %h1 Movies
-= form_tag movies_path, :method => 'get' do
-  %p
-    = text_field_tag :search, params[:search]
-    = submit_tag "Search", :name => nil, :class => "btn"
-%ul
-  - @movies.each do |movie|
-    %li[movie]= link_to movie.title, movie_path(movie)
+= form_tag movies_path, method: :get, class: 'form-search' do
+  = text_field_tag :search, params[:search], class: 'search-query input-medium'
+  = select_tag :type, options_for_select(search_types, selected: params[:type])
+  = submit_tag "Search", name: nil, class: "btn"
+%ul.media-list
+  = render @movies

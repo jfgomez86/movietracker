@@ -4,7 +4,12 @@
     %small= "(#{@movie.release_date.year})"
 
 .row
-  .span4 Movie's poster
+  .span4
+    .movie-poster{style: "text-align: center"}
+      - if @movie.poster_file_name.nil?
+        No image
+      - else
+        = image_tag @movie.poster.url(:medium), class: 'img-polaroid'
   .span8
     - unless @checkin.present?
       = link_to "Watch this movie", movie_checkins_path(@movie), method: :post
