@@ -9,8 +9,7 @@
     - unless @checkin.present?
       = link_to "Watch this movie", movie_checkins_path(@movie), method: :post
     - else
-      -# Add link to Unwatch movie here
-      You have already watched this movie!
+      = link_to "I haven't watch this movie yet!!", movie_checkin_path(@movie, @checkin), method: :delete
     %hr
     %p
       = @movie.synopsis
