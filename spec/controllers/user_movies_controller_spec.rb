@@ -23,7 +23,7 @@ describe UserMoviesController, 'Actions' do
       end
       it "should render the user_movies index " do
         get :index
-        response.should render_template(:index)
+        should render_template(:index)
       end
     end
   end

@@ -9,12 +9,12 @@
     .container
       .navbar.navbar-fixed-top
         .navbar-inner
-          %a.brand{:href => "#"} MovieTracker
+          %a.brand{href: "#"} MovieTracker
           %ul.nav
-            %li.active
+            %li
               = link_to 'Home', root_path
             %li
-              %a{:href => "#"} WatchList
+              = link_to "Watchlist", watchlist_path
 
       - flash.each do |type, message|
         %div{class: "alert #{flash_class type}"}

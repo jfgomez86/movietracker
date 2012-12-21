@@ -1,6 +1,4 @@
-%h1 Watched Movies
+%h1 Watchlist
 %ul
   - @watched_movies.each do |watched_movie|
     %li[watched_movie]= link_to watched_movie.title, movie_path(watched_movie)
-%hr
-= link_to "Back", movies_path

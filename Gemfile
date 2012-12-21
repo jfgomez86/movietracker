@@ -27,3 +27,5 @@ group :test do
 end
 
 gem 'activeadmin', '0.5.1'
+
+gem "paperclip", '3.3.1'
