@@ -1,4 +1,8 @@
 %h1 Movies
+= form_tag movies_path, :method => 'get' do
+  %p
+    = text_field_tag :search, params[:search]
+    = submit_tag "Search", :name => nil, :class => "btn"
 %ul
   - @movies.each do |movie|
     %li[movie]= link_to movie.title, movie_path(movie)
