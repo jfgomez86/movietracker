@@ -13,4 +13,13 @@ class Movie < ActiveRecord::Base
   validates_attachment :poster,
             :content_type => { :content_type => ["image/jpg", "image/jpeg", "image/png"]  },
             :size => { :less_than => 3.megabytes }
+
+  def self.search(search)
+    if search
+      find(:all, :conditions => ['title LIKE ?', "%#{search}%"])
+    else
+      find(:all)
+    end
+  end
+
 end

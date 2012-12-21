@@ -6,7 +6,7 @@ Movietracker::Application.routes.draw do
   devise_for :users
 
   resources :movies, only: [:index, :show] do
-    resources :checkins, only: [:create]
+    resources :checkins, only: [:create, :destroy]
   end
 
   root to: "movies#index"
