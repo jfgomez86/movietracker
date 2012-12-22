@@ -27,33 +27,40 @@ describe MoviesController, "Actions" do
         should render_template("movies/index")
       end
     end
+
     describe "on GET to #show" do
       before do
         @movie = FactoryGirl.create(:movie)
+        get :show, id: @movie.to_param
       end
 
       it "should load a movie into @movie" do
-        get :show, id: @movie.to_param
         assigns(:movie).should_not be_nil
       end
 
-      it "should render the index template" do
-        get :show, id: @movie.to_param
+      it "should render the show template" do
         should render_template("movies/show")
       end
-
-      describe "as an authenticated user" do
-        before do
-          @user = FactoryGirl.create(:user)
-          sign_in :user, @user
-        end
-
-        it "should load a checkin for the movie if it exists" do
-          FactoryGirl.create(:checkin, movie: @movie, user: @user)
-          get :show, id: @movie.to_param
-          assigns(:checkin).should_not be_nil
-        end
-      end
     end
+  end
+
+  describe "as an authenticated user" do
+    
+    describe "on GET to #show" do
+      
+      before do
+        @movie = FactoryGirl.create(:movie)
+        @user = FactoryGirl.create(:user)
+        sign_in :user, @user
+      end
+
+      it "should load a checkin for the movie if it exists" do
+        FactoryGirl.create(:checkin, movie: @movie, user: @user)
+        get :show, id: @movie.to_param
+        assigns(:checkin).should_not be_nil
+      end
+
+    end
+
   end
 end

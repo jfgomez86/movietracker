@@ -4,19 +4,23 @@ describe CheckinsController, "Routing" do
   it {{post: "/movies/1/checkins"}.should route_to(controller: "checkins",
                                                    action: "create",
                                                    movie_id: "1") }
+  it {{delete: "/movies/1/checkins/1"}.should route_to(controller: "checkins",
+                                                      action: "destroy",
+                                                      id: "1",
+                                                      movie_id: "1")}
 end
 
 describe CheckinsController, "Actions" do
   render_views
 
   before do
-    @user = FactoryGirl.create(:user)
     @movie = FactoryGirl.create(:movie)
   end
 
   describe "as an authenticated user" do
 
     before do
+      @user = FactoryGirl.create(:user)
       sign_in :user, @user
     end
 
