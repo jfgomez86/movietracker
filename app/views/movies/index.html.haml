@@ -1,7 +1,7 @@
 %h1 Movies
 = form_tag movies_path, method: :get, class: 'form-search' do
   = text_field_tag :search, params[:search], class: 'search-query input-medium'
-  = select_tag :type, options_for_select(search_types, selected: params[:type])
+  = select_tag :type, options_for_select(Movie::SEARCH_TYPES, selected: params[:type])
   = submit_tag "Search", name: nil, class: "btn"
 %ul.media-list
   = render @movies

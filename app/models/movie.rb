@@ -14,6 +14,8 @@ class Movie < ActiveRecord::Base
             :content_type => { :content_type => ["image/jpg", "image/jpeg", "image/png"]  },
             :size => { :less_than => 3.megabytes }
 
+  SEARCH_TYPES = %w(title synopsis)
+  
   def self.search(search, type)
     if search
       find(:all, conditions: ["#{type} LIKE ?", "%#{search}%"])
