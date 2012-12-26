@@ -1,0 +1,4 @@
+%h1 Other Users
+%ul
+  - @users.each do |user|
+    %li[user]= link_to user.email, watchlist_path(user)
