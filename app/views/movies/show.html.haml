@@ -12,9 +12,13 @@
         = image_tag @movie.poster.url(:medium), class: 'img-polaroid'
   .span8
     - unless @checkin.present?
-      = link_to "Watch this movie", movie_checkins_path(@movie), method: :post
+      = link_to "Add to Watchlist", movie_checkins_path(@movie), method: :post, class: "btn btn-info"
     - else
-      = link_to "I haven't watch this movie yet!!", movie_checkin_path(@movie, @checkin), method: :delete
+      = link_to "Remove from Watchlist", movie_checkin_path(@movie, @checkin), method: :delete, class: 'btn'
     %hr
     %p
       = @movie.synopsis
+    %p
+      -unless @movie.uri_trailer.nil?
+        %h3 Trailer
+        %iframe{:allowfullscreen => "", :frameborder => "0", :height => "315", :src => "http://www.youtube.com/embed/#{@movie.uri_trailer}?rel=0", :width => "560"}
