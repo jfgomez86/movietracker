@@ -6,6 +6,9 @@ ActiveAdmin.register Movie do
       f.input :release_date, as: :date
       f.input :poster, :as => :file,
                        :hint => f.template.image_tag(f.object.poster.url(:medium))
+      #f.label :uri_trailer
+      f.input :uri_trailer, hint: "Video identifier found in the URL of Youtube.<br>
+                                  for example http://www.youtube.com/watch?v=<span style=\"background:#C6E2FF;\">0uIWGOKW5OM</span>".html_safe
     end
     f.buttons
   end

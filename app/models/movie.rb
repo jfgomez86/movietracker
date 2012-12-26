@@ -1,7 +1,11 @@
 class Movie < ActiveRecord::Base
-  attr_accessible :title, :synopsis, :release_date, :poster
+  attr_accessible :title, :synopsis, :release_date, :poster, :uri_trailer
   validates :title, presence: true
   validates :release_date, presence: true
+
+  validates :uri_trailer, format: {with: /([\w-]{11}).*/,
+                        message: "Video Identifier Invalid"}
+
 
   has_many :checkins
   has_many :users, through: :checkins
@@ -23,5 +27,4 @@ class Movie < ActiveRecord::Base
       find(:all)
     end
   end
-
 end
