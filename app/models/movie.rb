@@ -2,8 +2,9 @@ class Movie < ActiveRecord::Base
   attr_accessible :title, :synopsis, :release_date, :poster, :uri_trailer
   validates :title, presence: true
   validates :release_date, presence: true
-  validates_format_of :uri_trailer, with: /([\w-]{11}).*/,
-                        message: "Video Identifier Invalid"
+
+  validates :uri_trailer, format: {with: /([\w-]{11}).*/,
+                        message: "Video Identifier Invalid"}
 
 
   has_many :checkins
