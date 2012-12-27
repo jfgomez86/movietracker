@@ -1,0 +1,7 @@
+- if user_signed_in?
+  = form_for([@movie, @rating], html: { class: 'form-inline rating_ballot' }) do |f|
+    - Rating::RATINGS.each do |r|
+      = f.label("value_#{r}", content_tag(:span, r), {class: "rating", id: r})
+      = radio_button_tag("rating[value]", r, @rating.value == r, class: 'rating_button')
+
+    = f.submit 'Save', class: 'btn btn-mini'

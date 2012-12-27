@@ -7,6 +7,7 @@ Movietracker::Application.routes.draw do
 
   resources :movies, only: [:index, :show] do
     resources :checkins, only: [:create, :destroy]
+    resources :ratings, only: [:create, :update]
   end
 
   root to: "movies#index"
