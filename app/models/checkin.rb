@@ -6,4 +6,10 @@ class Checkin < ActiveRecord::Base
 
   validates :movie_id, presence: true, uniqueness: {scope: :user_id}
   validates :user_id, presence: true
+
+  class << self
+    def top_5
+      Checkin.group("movie_id").order("count_all desc").limit(5).count
+    end
+  end
 end

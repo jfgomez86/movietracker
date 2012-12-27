@@ -1,4 +1,5 @@
 Movietracker::Application.routes.draw do
+
   ActiveAdmin.routes(self)
 
   devise_for :admin_users, ActiveAdmin::Devise.config
@@ -10,6 +11,7 @@ Movietracker::Application.routes.draw do
   end
 
   get "user/:id/watchlist", to: 'user_movies#index', as: :watchlist
+  get "tops", to: 'tops#index', as: :tops 
 
   root to: "movies#index"
 
