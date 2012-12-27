@@ -9,7 +9,9 @@ Movietracker::Application.routes.draw do
     resources :checkins, only: [:create, :destroy]
   end
 
+  get "user/:id/watchlist", to: 'user_movies#index', as: :watchlist
+
   root to: "movies#index"
 
-  get 'watchlist', to: 'user_movies#index', as: :watchlist
+  get 'users', to: 'users#index', as: :users
 end

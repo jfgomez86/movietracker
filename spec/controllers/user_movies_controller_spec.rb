@@ -2,8 +2,8 @@ require 'spec_helper'
 
 describe UserMoviesController, 'Routing' do
       
-  it {{get: "/watchlist"}.should route_to(controller: "user_movies",
-                                       action: "index")}
+  it {{get: "/user/1/watchlist"}.should route_to(controller: "user_movies",
+                                       action: "index", id: "1")}
 end
 
 describe UserMoviesController, 'Actions' do
@@ -17,21 +17,24 @@ describe UserMoviesController, 'Actions' do
     end
 
     describe "on GET to #index" do
-      it "should load a list of movies that a user has watched" do
-        get :index
-        assigns(:watched_movies).should_not be_nil
+      it "should load a list of movies that a user has added." do
+        get :index, id: @user.id
+        assigns(:watchlist_movies).should_not be_nil
       end
-      it "should render the user_movies index " do
-        get :index
+      it "should render the watchlist index " do
+        get :index, id: @user.id
         should render_template(:index)
       end
     end
   end
 
   describe "As a visitor" do
+    before do
+      @user = FactoryGirl.create(:user)
+    end
     describe "on GET to #index" do
       it "should redirect to the login page" do
-        get :index
+        get :index, id: @user.id
         should redirect_to(new_user_session_path)
       end
     end
