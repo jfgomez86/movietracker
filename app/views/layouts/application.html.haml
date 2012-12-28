@@ -16,6 +16,8 @@
                 = link_to "Your Watchlist", watchlist_path(current_user)
               %li
                 = link_to "Other Watchlist", users_path
+              %li
+                = link_to "Top Five", tops_path
           %ul.nav.pull-right
             - if user_signed_in?
               %li

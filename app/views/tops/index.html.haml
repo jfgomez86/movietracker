@@ -1,0 +1,17 @@
+%h1
+  Movie's Top Five
+
+.row-fluid
+  .span4.well
+    %h3 By Rating
+  .span4.well
+    %h3 By Watched Status
+  .span4.well
+    %h3 By Watch List
+    %p
+    - @checkin_top_5_by_watchlist.each do |top|
+      - movie = @movies_top_5_by_watchlists.select{|m| m.id == top.first}
+      - movie.each do |mov|
+        %h5
+          = mov.title + " (" + top[1].to_s + ")"
+          %br
