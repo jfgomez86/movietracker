@@ -3,21 +3,20 @@ require 'spec_helper'
 describe Movie, "Relations" do
   it { should have_many(:checkins) }
   it { should have_many(:users).through(:checkins) }
+  it { should have_many(:ratings) }
+  it { should have_many(:raters).through(:ratings) }
 end
 
 describe Movie, "Validations" do
   it { should validate_presence_of(:title) }
   it { should validate_presence_of(:release_date) }
+end
 
-  it "should validate_format_of uri_trailer (invalid)" do
-    @movie = Movie.new(FactoryGirl.attributes_for(:movie))
-    @movie.uri_trailer = "invalid"
-    @movie.should have(1).error_on(:uri_trailer)
-  end
-
-  it "should validate_format_of uri_trailer (valid)" do
-    @movie = Movie.new(FactoryGirl.attributes_for(:movie))
-    @movie.uri_trailer = "ma66u2TSTSY"
-    @movie.should have(0).error_on(:uri_trailer)
+describe Movie, "Methods" do
+  it "should calculates the average for the given movie" do
+    @movie = FactoryGirl.create(:movie)
+    FactoryGirl.create(:rating, user_id: 1, movie: @movie, value: 10)
+    FactoryGirl.create(:rating, user_id: 2, movie: @movie, value: 5)
+    @movie.average_rating.should eql(7.5)
   end
 end

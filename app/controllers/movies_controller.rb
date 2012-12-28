@@ -5,7 +5,10 @@ class MoviesController < ApplicationController
 
   def show
     @movie = Movie.find(params[:id])
-    @checkin = current_user.checkins.
-      where(movie_id: @movie.id).first if user_signed_in?
+    if user_signed_in?
+      @checkin = current_user.checkins.
+        where(movie_id: @movie.id).first
+      @rating = current_user.ratings.find_or_initialize_by_movie_id(@movie.id)
+    end
   end
 end

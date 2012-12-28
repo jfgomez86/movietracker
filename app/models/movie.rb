@@ -10,6 +10,9 @@ class Movie < ActiveRecord::Base
   has_many :checkins
   has_many :users, through: :checkins
 
+  has_many :ratings
+  has_many :raters, through: :ratings, source: :users
+
   has_attached_file :poster,
             :styles => { :medium => "256x320>", :thumb => "60x80>" },
             :url => "/assets/posters/:id/:style/:basename.:extension",
@@ -22,9 +25,14 @@ class Movie < ActiveRecord::Base
   
   def self.search(search, type)
     if search
-      find(:all, conditions: ["#{type} LIKE ?", "%#{search}%"])
+      where("#{type} LIKE ?", "%#{search}%")
     else
-      find(:all)
+      all
     end
   end
+
+  def average_rating
+    average = ratings.average(:value).to_f
+  end
+
 end
