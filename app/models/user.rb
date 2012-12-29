@@ -8,5 +8,5 @@ class User < ActiveRecord::Base
   has_many :movies, through: :checkins
 
   has_many :ratings
-  has_many :rated_movies, through: :ratings, source: :movies
+  has_many :rated_movies, through: :ratings, source: :movie
 end

@@ -1,5 +1,5 @@
 class Movie < ActiveRecord::Base
-  attr_accessible :title, :synopsis, :release_date, :poster, :uri_trailer
+  attr_accessible :title, :synopsis, :release_date, :poster, :uri_trailer, :average_rating
   validates :title, presence: true
   validates :release_date, presence: true
 
@@ -11,7 +11,7 @@ class Movie < ActiveRecord::Base
   has_many :users, through: :checkins
 
   has_many :ratings
-  has_many :raters, through: :ratings, source: :users
+  has_many :raters, through: :ratings, source: :user
 
   has_attached_file :poster,
             :styles => { :medium => "256x320>", :thumb => "60x80>" },
@@ -29,10 +29,6 @@ class Movie < ActiveRecord::Base
     else
       all
     end
-  end
-
-  def average_rating
-    average = ratings.average(:value).to_f
   end
 
 end
