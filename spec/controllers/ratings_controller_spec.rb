@@ -32,6 +32,11 @@ describe RatingsController, "Actions" do
         }.to change(@user.reload.ratings, :count).by(1)
       end
 
+      it "should re-calculates the average rating for the given movie" do
+        FactoryGirl.create(:rating, user_id: 2, movie: @movie, value: 3)
+        @movie.reload.average_rating.should eql(3.0)
+      end
+
       it "should redirect to the movie page" do
         post :create, movie_id: @movie.id
         should redirect_to @movie
@@ -51,6 +56,11 @@ describe RatingsController, "Actions" do
 
       it "should update the rating for the given movie by the current_user" do
         @rating.reload.value.should eql(1)
+      end
+
+      it "should re-calculates the average rating for the given movie" do
+        FactoryGirl.create(:rating, user_id: 2, movie: @movie, value: 3)
+        @movie.reload.average_rating.should eql(2.0)
       end
 
       it "should redirect to the movie page" do

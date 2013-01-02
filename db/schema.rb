@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121226155035) do
+ActiveRecord::Schema.define(:version => 20121228203612) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -59,14 +59,17 @@ ActiveRecord::Schema.define(:version => 20121226155035) do
     t.string   "title"
     t.text     "synopsis"
     t.datetime "release_date"
-    t.datetime "created_at",          :null => false
-    t.datetime "updated_at",          :null => false
+    t.datetime "created_at",                           :null => false
+    t.datetime "updated_at",                           :null => false
     t.string   "poster_file_name"
     t.string   "poster_content_type"
     t.integer  "poster_file_size"
     t.datetime "poster_updated_at"
     t.string   "uri_trailer"
+    t.float    "average_rating",      :default => 0.0
   end
+
+  add_index "movies", ["average_rating"], :name => "index_movies_on_average_rating"
 
   create_table "ratings", :force => true do |t|
     t.integer  "user_id"
